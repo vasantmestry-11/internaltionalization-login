@@ -1,10 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { getData } from "../../services/getData";
 import "./Login.css";
 
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const loginHandler = async () => {
+    const isFetched = await getData();
+    if (isFetched.status === 200) {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="login-card card d-flex flex-column">
@@ -26,7 +34,7 @@ const Login = () => {
         </div>
         <button
           className="btn btn-outline-success w-100 btn-sm"
-          onClick={() => navigate("/dashboard")}
+          onClick={loginHandler}
         >
           {t("login_btn_text")}
         </button>
