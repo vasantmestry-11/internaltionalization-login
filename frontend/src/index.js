@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
 import Language from "./components/Language/Language";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -46,7 +47,11 @@ root.render(
     <HashRouter>
       <Suspense fallback={<LoadingMarkup />}>
         <Language />
-        <App />
+        <Routes>
+          <Route exact path="/" element={<App />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       </Suspense>
     </HashRouter>
   </React.StrictMode>

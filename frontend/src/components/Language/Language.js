@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import cookies from "js-cookie";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
 const LANGUAGES = [
@@ -41,7 +41,7 @@ const Language = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <GlobeIcon />
+          <GlobeIcon height={20} width={20} />
         </button>
         <ul className="dropdown-menu">
           {/* <li className="dropdown-item-text">{t('language')}</li> */}
