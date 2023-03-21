@@ -1,6 +1,12 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  // HashRouter,
+  Routes,
+  Route,
+  Navigate,
+  BrowserRouter,
+} from "react-router-dom";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
@@ -26,7 +32,14 @@ i18n
     fallbackLng: "en",
     detection: {
       // order and from where user language should be detected. Default cookie name is: i18next
-      order: ["path", "cookie", "htmlTag", "localStorage", "sessionStorage"],
+      order: [
+        "path",
+        "cookie",
+        "htmlTag",
+        "querystring",
+        "localStorage",
+        "sessionStorage",
+      ],
       caches: ["cookie"],
     },
     backend: {
@@ -44,7 +57,7 @@ const LoadingMarkup = () => (
 
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <Suspense fallback={<LoadingMarkup />}>
         <Language />
         <Routes>
@@ -53,6 +66,6 @@ root.render(
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 );
