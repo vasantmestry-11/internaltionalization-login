@@ -11,6 +11,7 @@ import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
+import Language from "./components/Language/Language";
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -44,6 +45,7 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Suspense fallback={<LoadingMarkup />}>
+        <Language />
         <App />
       </Suspense>
     </HashRouter>
