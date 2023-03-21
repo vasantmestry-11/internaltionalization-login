@@ -22,7 +22,7 @@ i18n
   .use(LanguageDetector) // to detect language of browser
   .use(initReactI18next) // initializes react-i18next
   .init({
-    supportedLanguages: ["en"],
+    supportedLanguages: ["en", "fr"],
     fallbackLng: "en",
     detection: {
       // order and from where user language should be detected. Default cookie name is: i18next

@@ -1,7 +1,7 @@
-// import { useEffect } from "react";
 import cookies from "js-cookie";
-// import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const LANGUAGES = [
   {
@@ -11,7 +11,7 @@ const LANGUAGES = [
   },
   {
     code: "fr",
-    name: "French",
+    name: "Français",
     country_code: "fr",
   },
 ];
@@ -32,6 +32,10 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
 const Language = () => {
   const currentLanguageCode = cookies.get("i18next") || "en";
   const currentLanguage = LANGUAGES.find((l) => l.code === currentLanguageCode);
+  const { t } = useTranslation();
+
+  useEffect(() => {}, [currentLanguage, t]);
+
   return (
     <div className="d-flex justify-content-end">
       <div className="dropdown" title="change language">
@@ -44,13 +48,12 @@ const Language = () => {
           <GlobeIcon height={20} width={20} />
         </button>
         <ul className="dropdown-menu">
-          {/* <li className="dropdown-item-text">{t('language')}</li> */}
           {LANGUAGES.map(({ code, name }) => (
             <li key={code}>
               <button
                 className="dropdown-item"
                 onClick={() => i18next.changeLanguage(code)}
-                disabled={code === currentLanguage}
+                disabled={code === currentLanguageCode}
               >
                 {name}
               </button>

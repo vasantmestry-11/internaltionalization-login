@@ -9,7 +9,7 @@ const Login = () => {
   return (
     <div className="login-card card d-flex flex-column">
       <div className="card-body">
-        <h5 className="card-title text-center mb-4">{t("login_title")}</h5>
+        <h5 className="card-title text-center mb-4">{t("login_card_title")}</h5>
         <div className="mb-3">
           <input
             type="text"
