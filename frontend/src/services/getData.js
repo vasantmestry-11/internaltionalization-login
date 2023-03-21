@@ -1,8 +1,11 @@
 import axios from "axios";
 
-export const getData = async () => {
+export const getData = async ({ username, password }) => {
   const data = await axios
-    .get("https://jsonplaceholder.typicode.com/posts/1")
+    .post("http://localhost:8080/login", {
+      username,
+      password,
+    })
     .then((res) => res);
 
   return data;

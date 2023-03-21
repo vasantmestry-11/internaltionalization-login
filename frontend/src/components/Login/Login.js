@@ -1,15 +1,37 @@
+import { useReducer } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import formReducer from "../../reducers/formReducer";
 import { getData } from "../../services/getData";
 import "./Login.css";
+
+const initialState = {
+  username: "",
+  password: "",
+};
 
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [formState, dispatch] = useReducer(formReducer, initialState);
+  const { username, password } = formState;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({
+      type: "INPUT_CHANGE",
+      field: name,
+      payload: value,
+    });
+  };
+
   const loginHandler = async () => {
-    const isFetched = await getData();
-    if (isFetched.status === 200) {
+    const isFetched = await getData({
+      username,
+      password,
+    });
+    if (isFetched.status === 202) {
       navigate("/dashboard");
     }
   };
@@ -23,13 +45,19 @@ const Login = () => {
             type="text"
             className="form-control form-control-sm"
             placeholder={t("username")}
+            name="username"
+            value={username}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3">
           <input
             type="password"
+            name="password"
             className="form-control form-control-sm"
             placeholder={t("password")}
+            value={password}
+            onChange={handleChange}
           />
         </div>
         <button
